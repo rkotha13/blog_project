@@ -1,12 +1,264 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Logged Out</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out - BlogSpace</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .button-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .button-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.5);
+        }
+        
+        .secondary-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(79, 172, 254, 0.4);
+        }
+        
+        .wave-animation {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particles 8s linear infinite;
+        }
+        
+        @keyframes particles {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .success-checkmark {
+            animation: checkmark 0.6s ease-in-out;
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 p-8 text-center">
-  <h2 class="text-3xl font-bold mb-4">You have been logged out.</h2>
-  <p class="mb-4">Want to log in again?</p>
-  <a href="{% url 'login' %}" class="bg-blue-500 text-white px-4 py-2 rounded">Login</a>
+<body class="min-h-screen gradient-bg relative overflow-hidden">
+    <!-- Floating Background Elements -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-white bg-opacity-10 rounded-full floating-animation"></div>
+    <div class="absolute bottom-20 right-10 w-32 h-32 bg-white bg-opacity-10 rounded-full floating-animation" style="animation-delay: -2s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white bg-opacity-10 rounded-full floating-animation" style="animation-delay: -4s;"></div>
+    <div class="absolute bottom-1/4 left-1/2 w-24 h-24 bg-white bg-opacity-10 rounded-full floating-animation" style="animation-delay: -3s;"></div>
+    
+    <!-- Animated Particles -->
+    <div class="particle w-2 h-2 left-1/4" style="animation-delay: 0s;"></div>
+    <div class="particle w-3 h-3 left-2/4" style="animation-delay: 2s;"></div>
+    <div class="particle w-2 h-2 left-3/4" style="animation-delay: 4s;"></div>
+    <div class="particle w-4 h-4 left-1/3" style="animation-delay: 6s;"></div>
+    
+    <!-- Navigation -->
+    <nav class="relative z-10 p-6">
+        <div class="flex justify-between items-center">
+            <div class="text-white text-2xl font-bold">
+                <span class="floating-animation inline-block">📝</span>
+                <span class="ml-2">BlogSpace</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-white hover:text-gray-200 transition-colors duration-300">Home</a>
+                <a href="#" class="text-white hover:text-gray-200 transition-colors duration-300">About</a>
+                <a href="#" class="text-white hover:text-gray-200 transition-colors duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="flex items-center justify-center min-h-screen px-4 relative z-10">
+        <div class="glass-effect rounded-3xl p-12 max-w-md w-full text-center fade-in">
+            <!-- Success Icon -->
+            <div class="mb-8">
+                <div class="success-checkmark w-20 h-20 mx-auto rounded-full bg-green-500 flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <div class="text-6xl wave-animation inline-block">👋</div>
+            </div>
+            
+            <!-- Message -->
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                Successfully Logged Out!
+            </h2>
+            <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                Thanks for visiting BlogSpace. Your session has been securely ended. 
+                <br>
+                <span class="text-sm mt-2 inline-block">Ready to dive back in?</span>
+            </p>
+            
+            <!-- Action Buttons -->
+            <div class="space-y-4">
+                <!-- Primary CTA -->
+                <a href="{% url 'login' %}" class="button-gradient text-white px-8 py-4 rounded-xl font-semibold text-lg w-full inline-block">
+                    <span class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                        </svg>
+                        Login Again
+                    </span>
+                </a>
+                
+                <!-- Secondary Actions -->
+                <div class="flex space-x-3">
+                    <a href="#" class="secondary-btn text-white px-6 py-3 rounded-xl font-medium flex-1">
+                        <span class="flex items-center justify-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            Home
+                        </span>
+                    </a>
+                    <a href="#" class="border-2 border-gray-300 text-gray-600 px-6 py-3 rounded-xl font-medium flex-1 hover:bg-gray-50 transition-colors">
+                        <span class="flex items-center justify-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                            </svg>
+                            Sign Up
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Additional Info -->
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <p class="text-gray-500 text-sm">
+                    Need help? Check out our 
+                    <a href="#" class="text-purple-600 hover:text-purple-800 font-medium">support center</a>
+                    or 
+                    <a href="#" class="text-purple-600 hover:text-purple-800 font-medium">contact us</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="absolute bottom-0 left-0 right-0 p-6 text-center text-white text-sm opacity-75">
+        <p>&copy; 2024 BlogSpace. Made with ❤️ for writers and readers.</p>
+    </footer>
+    
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to buttons
+            const buttons = document.querySelectorAll('.button-gradient, .secondary-btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.02)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Add click ripple effect
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Smooth fade-in animation
+            const mainContent = document.querySelector('.glass-effect');
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+    
+    <style>
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
 </body>
 </html>
