@@ -44,6 +44,11 @@ AUTH_USER_MODEL = 'myblogsite.User'
 LOGIN_URL = 'login'              # Unauthenticated users go here
 LOGIN_REDIRECT_URL = 'home'      # After login, go to home
 LOGOUT_REDIRECT_URL = 'login'    # After logout, go to login page
+SESSION_COOKIE_AGE = 600
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'admin@example.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
