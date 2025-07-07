@@ -18,6 +18,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 1rem;
         }
 
         .login-container {
@@ -103,6 +104,21 @@
             text-decoration: underline;
         }
 
+        .register-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
         .message {
             padding: 0.75rem;
             margin-bottom: 1rem;
@@ -151,12 +167,16 @@
             </div>
 
             <button type="submit" class="login-btn" id="loginBtn">
-                Sign In
+                Login
             </button>
         </form>
 
         <div class="forgot-password">
-            <a href="{% url 'password_reset' %}">Forgot password?</a>
+            <a href="#">Forgot password?</a>
+        </div>
+
+        <div class="register-link">
+            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
         </div>
     </div>
 
@@ -169,25 +189,33 @@
             const btn = document.getElementById('loginBtn');
             const message = document.getElementById('message');
             
+            // Basic validation
+            if (!username || !password) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+            
             // Show loading state
-            btn.textContent = 'Signing in...';
+            btn.textContent = 'Logging in...';
             btn.disabled = true;
             message.style.display = 'none';
             
             // Simulate login
             setTimeout(() => {
-                if (username === 'demo' && password === 'password') {
+                if (username === 'admin' && password === 'password') {
                     showMessage('Login successful!', 'success');
+                    
                     setTimeout(() => {
-                        alert('Login successful! In a real app, you would be redirected.');
+                        alert('Welcome back, ' + username + '!');
+                        // Redirect to dashboard or home page
                     }, 1000);
                 } else {
                     showMessage('Invalid username or password', 'error');
                 }
                 
-                btn.textContent = 'Sign In';
+                btn.textContent = 'Login';
                 btn.disabled = false;
-            }, 1000);
+            }, 2000);
         });
 
         function showMessage(text, type) {
@@ -202,6 +230,13 @@
                 }, 3000);
             }
         }
+
+        // Optional: Add Enter key support for form submission
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+        });
     </script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+<h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
+<p class="text-gray-600">By {{ post.author.username }} on {{ post.created_at }}</p>
+<hr class="my-4" />
+<div class="prose">
+  {{ post.content|safe }}
+</div>
+<a href="{% url 'post_list' %}" class="text-blue-500 mt-6 inline-block">← Back to posts</a>
